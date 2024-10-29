@@ -1,5 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { addContactSchema } from "../../utils/schemas";
+import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
 
 import styles from "./ContactForm.module.css";
 
@@ -8,12 +11,18 @@ const INITIAL_VALUES = {
   number: "",
 };
 
-const ContactForm = ({ onAddContact }) => {
-  const handleSubmit = (values, actions) => {
-    onAddContact(values);
-    actions.resetForm();
-  };
+const ContactForm = () => {
+  const dispatch = useDispatch();
 
+  const handleSubmit = (values, actions) => {
+    actions.resetForm();
+    dispatch(
+      addContact({
+        ...values,
+        id: nanoid(),
+      })
+    );
+  };
   return (
     <Formik
       initialValues={INITIAL_VALUES}
