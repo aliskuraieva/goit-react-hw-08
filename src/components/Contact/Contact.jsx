@@ -1,27 +1,32 @@
 import styles from "./Contact.module.css";
-import { FaPhoneAlt } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
+import { deleteContact } from "../../redux/contacts/operations";
 
+import { FaPhone } from "react-icons/fa6";
+import { IoPerson } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps";
 
 const Contact = ({ contact }) => {
   const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteContact(contact.id))
+      .unwrap()
+      .catch((error) => console.error("Failed to delete contact:", error));
+  };
+
   return (
-    <div className={styles.container}>
-      <p className={styles.text}>
-        <FaUser className={styles.icon} />
-        {contact.name}
-      </p>
-      <p className={styles.text}>
-        <FaPhoneAlt className={styles.icon} />
-        {contact.number}
-      </p>
-      <button
-        className={styles.btn}
-        type="button"
-        onClick={() => dispatch(deleteContact(contact.id))}
-      >
+    <div className={styles.item}>
+      <div className={styles.container}>
+        <div className={styles.swipper}>
+          <IoPerson style={{ fontSize: "12px" }} />
+          <p className={styles.text}>{contact.name}</p>
+        </div>
+        <div className={styles.swipper}>
+          <FaPhone style={{ fontSize: "12px" }} />
+          <p className={styles.text}>{contact.number}</p>
+        </div>
+      </div>
+      <button className={styles.delete} type="button" onClick={handleDelete}>
         Delete
       </button>
     </div>

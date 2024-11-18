@@ -28,3 +28,7 @@ img {
 #root {
   padding: 10px;
 }
+
+button {
+  cursor: pointer;
+}
