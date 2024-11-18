@@ -7,6 +7,8 @@ import {
   updateContact,
 } from "./operations";
 
+import { logout } from "../auth/operations";
+
 const handleLoading = (state) => {
   state.loading = true;
 };
@@ -63,6 +65,11 @@ const slice = createSlice({
         state.items.splice(index, 1);
       })
       .addCase(deleteContact.rejected, handleError)
+      .addCase(logout.fulfilled, (state) => {
+        state.items = [];
+        state.error = null;
+        state.loading = false;
+      })
       .addCase(updateContact.pending, handleLoading)
       .addCase(updateContact.fulfilled, (state, action) => {
         state.loading = false;
