@@ -15,14 +15,6 @@
   padding-left: 10px;
 }
 
-.search:hover {
-  border-color: #ffffff;
-}
-
-.search:focus {
-  outline: 1px solid #ffffff;
-}
-
 .title {
   text-align: center;
   margin-bottom: 10px;
