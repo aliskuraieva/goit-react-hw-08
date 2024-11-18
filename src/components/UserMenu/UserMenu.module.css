@@ -13,23 +13,17 @@
 }
 
 .logoutBtn {
-  padding: 5px 20px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 3px;
-  background-color: goldenrod;
-  border: none;
-  color: #ffffff;
-  border-radius: 5px;
-  transition: background-color 150ms ease-in-out;
+
+  color: black;
 }
 
 .logoutBtn:hover {
   background-color: goldenrod;
-}
-
-.logoutBtn:hover .logoutBtnIcon {
-  transform: scale(1.3);
-  transition: transform 150ms ease-in-out;
+  border: 1px solid goldenrod;
+  color: #ffffff;
 }
